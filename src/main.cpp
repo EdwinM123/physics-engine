@@ -1,9 +1,11 @@
 #include <iostream>
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp> 
+#include <SFML/Window/Window.hpp>
 #include "solver.hpp"
 #include "renderer.hpp"
 #include "number_generator.hpp"
 #include "math.hpp"
+#include <SFML/Window/ContextSettings.hpp>
 
 using namespace std; 
 using namespace sf;
@@ -15,3 +17,11 @@ static Color getRainbow(float t){
     return {static_cast<uint8_t>(255.0f*r*r), static_cast<uint8_t>(255.0f*g*g), static_cast<uint8_t>(255.0f*b*b)};
 
 };
+
+int32_t main(int32_t, char*[]){
+    constexpr int32_t window_width = 1000;
+    constexpr int32_t window_height =1000;
+
+    ContextSettings settings;
+
+}
