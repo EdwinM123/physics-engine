@@ -7,10 +7,9 @@
 #include "math.hpp"
 #include <SFML/Window/ContextSettings.hpp>
 
-using namespace std; 
-using namespace sf;
+using namespace std;  
 
-static Color getRainbow(float t){
+static sf::Color getRainbow(float t){
     const float r = sin(t);
     const float g = sin(t+0.33f*2.0f*Math::pi);
     const float b = sin(t+0.66f*2.0f*Math::pi);
@@ -21,7 +20,5 @@ static Color getRainbow(float t){
 int32_t main(int32_t, char*[]){
     constexpr int32_t window_width = 1000;
     constexpr int32_t window_height =1000;
-
-    ContextSettings settings;
 
 }
