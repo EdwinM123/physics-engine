@@ -7,8 +7,6 @@
 #include "math.hpp"
 #include <SFML/Window/ContextSettings.hpp>
 
-using namespace std;  
-using namespace sf;
 
 static sf::Color getRainbow(float t){
     const float r = sin(t);
@@ -33,7 +31,7 @@ int32_t main(int32_t, char*[]){
 
     solver.setConstraint({static_cast<float>(window_width) *0.5f, static_cast<float>(window_height)*0.5f}, 450.0f);
     solver.setSubStepsCount(8);
-    solver.setSimulationUpdateRate(frame_rate);
+    solver.setStimulationUpdateRate(frame_rate);
 
     //Simulation Attributes
     const float         object_spawn_delay  = 0.025f;

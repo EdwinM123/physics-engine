@@ -8,7 +8,7 @@ struct VerletObject{
   sf::Vector2f position; 
   sf::Vector2f position_last; 
   sf::Vector2f acceleration;
-  float radius 10.0f;
+  float radius = 10.0f;
   sf::Color color = sf::Color::White; 
 
   VerletObject() =default; 
@@ -57,7 +57,7 @@ class Solver{
     void update(){
       m_time += m_frame_dt;
       const float step_dt = getStepDt(); 
-      for(uint32_t i{m_sub_steps}; i--){
+      for(uint32_t i{m_sub_steps}; i--;){
         applyGravity();
         checkCollisions(step_dt);
         applyConstraint();
@@ -88,7 +88,7 @@ class Solver{
 
     [[nodiscard]]
     sf::Vector3f getConstraint() const{
-      return {m_constraint_center.x, m_constraint_center.y};
+      return {m_constraint_center.x, m_constraint_center.y, m_constraint_radius};
     }
 
     [[nodiscard]]
@@ -137,10 +137,11 @@ class Solver{
             const sf::Vector2f n = v/dist; 
             const float mass_ratio_1 = object_1.radius/(object_1.radius + object_2.radius);
             const float mass_ratio_2 = object_2.radius/(object_1.radius + object_2.radius);
-            cost float delta = 0.5f *response_coef * (dist - min_dist); 
+            const float delta = 0.5f *response_coef * (dist - min_dist); 
             //Update Positions 
             object_1.position -=n *(mass_ratio_2*delta); 
             object_2.position +=n *(mass_ratio_1*delta);
+          }
         }
       }
     }

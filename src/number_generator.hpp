@@ -1,11 +1,11 @@
 #pragma once
 #include <random> 
+ 
 
-using namespace std;
 class NumberGenerator {
     protected: 
-        random_device rd;
-        mt19937 gen; 
+        std::random_device rd;
+        std::mt19937 gen; 
         NumberGenerator()
             :gen(rd())
         {}
@@ -18,7 +18,7 @@ class RealNumberGenerator : public NumberGenerator{
     public: 
         RealNumberGenerator() 
             :NumberGenerator(),
-            dis(0.0f, 1.0f);
+            dis(0.0f, 1.0f)
         {}
         RealNumberGenerator(const RealNumberGenerator<T> & right)
             :NumberGenerator(),
@@ -33,7 +33,7 @@ class RealNumberGenerator : public NumberGenerator{
         }
 
         float getRange(T min, T max){
-            return min _ get() * (max-min);
+            return min + get() * (max-min);
         }
         float getRange(T width){
             return getRange(-width * 0.5f, width *0.5); 
@@ -50,7 +50,7 @@ class RNG{
             return gen.get();
         }
         static float getUnder(T max){
-            return gen.getUnder(max): 
+            return gen.getUnder(max);
         }
         static uint64_t getUintUnder(uint64_t max){
             return static_cast<uint64_t>(gen.getUnder(static_cast<float>(max)+1.0f));
@@ -86,12 +86,12 @@ class IntegerNumberGenerator : public NumberGenerator {
     {}
 
     T getUnder(T max){
-        uniform_int_distribution<mt19937::result_type> dist(0, max);
+        std::uniform_int_distribution<std::mt19937::result_type> dist(0, max);
         return dist(gen); 
     }
 
     T getRange(T min, T max){
-        uniform_int_distribution<mt19937::result_type> dist(min, max); 
+        std::uniform_int_distribution<std::mt19937::result_type> dist(min, max); 
         return dist(gen); 
     }
 };
@@ -103,7 +103,7 @@ class RNGi {
     
     public: 
         static T getUnder(T max){
-            return gen.getUnder(max):
+            return gen.getUnder(max);
         }
 
         static T getRange(T min, T max){
