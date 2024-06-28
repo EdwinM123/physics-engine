@@ -13,7 +13,7 @@ struct VerletObject{
 
   VerletObject() =default; 
   VerletObject(sf::Vector2f position_, float radius_)
-    : position{position_}, 
+    : position{position_},
     position_last{position_}, 
     acceleration{0.0f, 0.0f}, 
     radius{radius_}
@@ -77,8 +77,8 @@ class Solver{
       m_sub_steps = sub_steps;
     }
 
-    void setObjectVelocity(VerletObject& object, sf::Vector2f v){
-      object.setVelocity(v, getStepDt()); 
+    void setObjectVelocity(VerletObject& obj, sf::Vector2f v){
+      obj.setVelocity(v, getStepDt()); 
     }
 
     [[nodiscard]]
