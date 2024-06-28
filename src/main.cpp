@@ -12,7 +12,9 @@ static sf::Color getRainbow(float t){
     const float r = sin(t);
     const float g = sin(t+0.33f*2.0f*Math::pi);
     const float b = sin(t+0.66f*2.0f*Math::pi);
-    return {static_cast<uint8_t>(255.0f*r*r), static_cast<uint8_t>(255.0f*g*g), static_cast<uint8_t>(255.0f*b*b)};
+    return {static_cast<uint8_t>(255.0f*r*r), 
+    static_cast<uint8_t>(255.0f*g*g), 
+    static_cast<uint8_t>(255.0f*b*b)};
 
 };
 
@@ -58,9 +60,14 @@ int32_t main(int32_t, char*[]){
         auto& object = solver.addObject(object_spawn_position, RNGf::getRange(object_min_radius, object_max_radius));
         const float t = solver.getTime();
         const float angle = max_angle * sin(t)+Math::pi*0.5f;
-        solver.setObjectVelocity(object, object_spawn_speed * sf::Vector2f{std::cos(angle), std::sin(angle)});
+        solver.setObjectVelocity(object, object_spawn_speed * sf::Vector2f{cos(angle), sin(angle)});
         object.color=getRainbow(t);
       }
+
+      solver.update();
+      window.clear(sf::Color::White);
+      renderer.render(solver);
+      window.display();
     }
 
 
