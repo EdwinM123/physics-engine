@@ -56,7 +56,7 @@ int32_t main(int32_t, char*[]){
       }
 
       if(solver.getObjectsCount() <max_objects_count && clock.getElapsedTime().asSeconds()>=object_spawn_delay){
-        clock.restart();
+        clock.restart(); 
         auto& object = solver.addObject(object_spawn_position, RNGf::getRange(object_min_radius, object_max_radius));
         const float t = solver.getTime();
         const float angle = max_angle * sin(t)+Math::pi*0.5f;
